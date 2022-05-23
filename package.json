@@ -1,0 +1,28 @@
+{
+  "name": "readme-generator",
+  "version": "1.0.0",
+  "description": "Coding Bootcamp Weekly Challenge 9. This is a Professional README Generator created using Node.js. The application runs on the command line, where the user replies to a series of prompts that will be used to output a README markdown file.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leandromichelena/README-Generator.git"
+  },
+  "keywords": [
+    "node.js",
+    "javascript",
+    "readme",
+    "markdown"
+  ],
+  "author": "leandromichelena",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/leandromichelena/README-Generator/issues"
+  },
+  "homepage": "https://github.com/leandromichelena/README-Generator#readme",
+  "dependencies": {
+    "inquirer": "^8.2.4"
+  }
+}
