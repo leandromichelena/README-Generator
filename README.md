@@ -8,6 +8,9 @@ The objective of this exercise is to feature dynamically updated HTML and CSS po
 ## Example file
 Please check the README.md file in the dist folder.
 
+## Usage
+Please check this [walk-through video](https://drive.google.com/file/d/1IN2GTIBfcJ869ZnPpiCcMlGU4NR4438K/view) for a demonstration of its use.
+
 ## Built With
 * Node.js
 * Inquirer
