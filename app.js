@@ -1,6 +1,7 @@
 const inquirer = require('inquirer');
 
-const { writeFile } = require('./utils/file-system');
+const writeFile = require('./utils/file-system');
+const markdownTemplate = require('./src/templateMD');
 
 const promptQuestions = () => {
     return inquirer.prompt([
@@ -41,13 +42,13 @@ const promptQuestions = () => {
         },
         {
             type: 'input',
-            name: 'contributionCustom',
-            message: 'If you created an application or package and would like other developers to contribute to it, you can include guidelines for how to do so.',
-            when: ({ confirmAbout }) => {
-                if (confirmAbout) {
-                    return true;
-                } else {
+            name: 'customContribution',
+            message: 'Please enter your custom contribution guidelines',
+            when: ({ contributionConfirm }) => {
+                if (contributionConfirm) {
                     return false;
+                } else {
+                    return true;
                 }
             }
         },
@@ -57,7 +58,7 @@ const promptQuestions = () => {
             message: 'Did you write tests to your application? If so, please enter provide examples on how to run them.',
         },
         {
-            type: 'input',
+            type: 'list',
             name: 'license',
             message: 'Please select your project license. A license tells others what they can and cannot do with your code.',
             choices: ['Apache License 2.0', 'GNU General Public License v3.0', 'MIT License', 'BSD 2-Clause “Simplified” License', 'BSD 3-Clause “New” or “Revised” License', 'Boost Software License 1.0', 'Creative Commons Zero v1.0 Universal', 'Eclipse Public License 2.0', 'GNU Affero General Public License v3.0', 'GNU General Public License v2.0', 'GNU Lesser General Public License v2.1', 'Mozilla Public License 2.0', 'The Unlicense']
@@ -82,13 +83,14 @@ const promptQuestions = () => {
             message: 'Please enter your email address. It will be added to the questions section.'
         }
     ])
-    .then(answers => console.log(answers));
 };
 
 promptQuestions()
-    .then(writeMD => {
-        console.log(writeMD);
-        return writeFile(writeMD);
+    .then(readmeData => {
+        return markdownTemplate(readmeData);
+    })
+    .then(fileContent => {
+        return writeFile(fileContent);
     })
     .then(writeFileResponse => {
         console.log(writeFileResponse);
